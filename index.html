@@ -52,7 +52,7 @@
             <button class="landing-btn-primary" onclick="showView('login')" style="padding: 15px 35px; font-size: 1.1rem;">Explore Keyrings <i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="hero-visual">
-            <img src="images/baby.jpg  " alt="Collection of keyrings">
+            <img src="images/banner4.jpg  " alt="Collection of keyrings">
             <div class="floating-badge">
                 <div class="badge-icon"><i class="fas fa-gem"></i></div>
                 <div class="badge-text">
@@ -80,7 +80,7 @@
         <button class="btn-primary" style="width: auto; padding: 10px 25px;" onclick="showView('login')">Sign In to Start Shopping</button>
     </div>
 </div>
-
+<!-- This is login/register section -->
 <div id="login-view" class="hidden">
     <ul class="background-3d"><li></li><li></li><li></li><li></li><li></li><li></li></ul>
     <div class="auth-container" id="auth-container">
@@ -897,7 +897,7 @@
         document.getElementById('admin-products-count').innerText = products.length;
         
         document.getElementById('admin-inventory-list').innerHTML = products.map(p => `<tr>
-            <td><img src="${p.img}" onerror="this.src='https://placehold.co/40'" style="width:40px; height:40px; object-fit:cover; border-radius:4px;"></td>
+            <td><img src="${p.img}" onerror="this.src='images/'" style="width:40px; height:40px; object-fit:cover; border-radius:4px;"></td>
             <td style="color:var(--text-dark)">${p.name}</td>
             <td style="color:var(--text-dark)">£${p.price.toFixed(2)}</td>
             <td><input type="number" value="${p.stock}" onchange="adminUpdateStock(${p.id}, this.value)" style="width:70px; padding:5px; margin:0;"></td>
