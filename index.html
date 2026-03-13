@@ -105,13 +105,13 @@
         input, select { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid var(--border-color); border-radius: 4px; font-size: 1rem; outline: none; background: var(--input-bg); color: var(--text-dark); transition: 0.3s;}
         input:focus, select:focus { border-color: var(--primary-color); }
 
-        /* --- LOGIN UI & SOCIAL BUTTONS --- */
+        /* --- LOGIN UI & SOCIAL --- */
         #login-view { height: 90vh; display: flex; align-items: center; justify-content: center; position: relative; background: linear-gradient(135deg, #2b2d42, #1e1f2e); perspective: 1000px; overflow: hidden; }
         .background-3d { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; transform-style: preserve-3d; }
         .background-3d li { position: absolute; display: block; width: 20px; height: 20px; background: rgba(239, 35, 60, 0.15); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px); animation: floatUp3D 15s linear infinite; bottom: -150px; border-radius: 12px; }
         .background-3d li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; } .background-3d li:nth-child(2) { left: 10%; width: 30px; height: 30px; animation-duration: 12s; } .background-3d li:nth-child(3) { left: 70%; width: 50px; height: 50px; animation-delay: 4s; }
 
-        .auth-container { background-color: var(--card-bg); border-radius: 10px; transform: translateZ(50px); box-shadow: 0 35px 60px rgba(0,0,0,0.4); position: relative; overflow: hidden; width: 768px; max-width: 90%; min-height: 580px; text-align: center; z-index: 1; }
+        .auth-container { background-color: var(--card-bg); border-radius: 10px; transform: translateZ(50px); box-shadow: 0 35px 60px rgba(0,0,0,0.4); position: relative; overflow: hidden; width: 768px; max-width: 90%; min-height: 520px; text-align: center; z-index: 1; }
         .form-container { position: absolute; top: 0; height: 100%; transition: all 0.6s ease-in-out; background: var(--card-bg); display: flex; flex-direction: column; padding: 0 50px; justify-content: center; align-items: center; width: 50%; }
         .form-container form { width: 100%; display: flex; flex-direction: column; align-items: center; }
         .sign-in-container { left: 0; z-index: 2; }
@@ -129,7 +129,6 @@
         .overlay-right { right: 0; transform: translateX(0); }
         .auth-container.right-panel-active .overlay-right { transform: translateX(20%); }
 
-        /* Social Buttons Styling */
         .social-container { margin: 15px 0; display: flex; gap: 15px; justify-content: center; }
         .social-container button { border: 1px solid var(--border-color); border-radius: 50%; height: 45px; width: 45px; background: transparent; cursor: pointer; color: var(--text-dark); transition: 0.3s; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
         .social-container button.google:hover { background: #db4437; border-color: #db4437; color: white;}
@@ -146,7 +145,7 @@
         
         .card { background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border-color); padding: 15px; display: flex; flex-direction: column; position: relative; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; cursor: pointer; transition: 0.2s; background-color: var(--input-bg);}
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; cursor: pointer; transition: 0.2s;}
         .card img:hover { opacity: 0.85; }
         .heart-btn { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; color: #ccc; font-size: 1.2rem; z-index: 10; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
         .heart-btn.active { color: var(--error-red); }
@@ -157,6 +156,7 @@
         .autocomplete-item { padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-dark); border-bottom: 1px solid var(--input-bg); }
         .autocomplete-item:hover { background: var(--input-bg); }
         .autocomplete-item img { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; }
+        .flying-img { position: fixed; z-index: 9999; border-radius: 50%; object-fit: cover; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: none; }
 
         /* --- CART & CHECKOUT --- */
         table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02);}
@@ -572,6 +572,7 @@
     // =========================================================
     let cart = JSON.parse(localStorage.getItem('kcCart')) || [];
     let wishlist = JSON.parse(localStorage.getItem('kcWishlist')) || [];
+    let orderHistory = JSON.parse(localStorage.getItem('kcOrders')) || [];
     let discountMultiplier = 1;
     let currentUser = null; 
     let activeProductId = null;
@@ -658,7 +659,7 @@
         
         auth.signInWithEmailAndPassword(email, pass)
             .then(() => {
-                showToast(`Welcome back, ${email.split('@')[0]}!`, "success");
+                showToast(`Welcome back, ${email}!`, "success");
                 showView('shop');
             })
             .catch((error) => { showToast(error.message, "error"); });
@@ -754,8 +755,11 @@
         if (viewId === 'wishlist') renderWishlist();
         if (viewId === 'admin') renderAdmin();
         
-        document.getElementById('cart-total-nav').innerText = getCartTotal().toFixed(2);
-        document.getElementById('wish-count').innerText = wishlist.length;
+        const cartNav = document.getElementById('cart-total-nav');
+        if(cartNav) cartNav.innerText = getCartTotal().toFixed(2);
+        
+        const wishCount = document.getElementById('wish-count');
+        if(wishCount) wishCount.innerText = wishlist.length;
         
         window.scrollTo(0,0);
     }
@@ -945,8 +949,10 @@
         localStorage.setItem('kcWishlist', JSON.stringify(wishlist));
         document.getElementById('wish-count').innerText = wishlist.length;
         
-        if (!document.getElementById('shop-view').classList.contains('hidden')) filterProducts();
-        if (!document.getElementById('wishlist-view').classList.contains('hidden')) renderWishlist();
+        const shopView = document.getElementById('shop-view');
+        const wishView = document.getElementById('wishlist-view');
+        if (shopView && !shopView.classList.contains('hidden')) filterProducts();
+        if (wishView && !wishView.classList.contains('hidden')) renderWishlist();
     }
 
     function renderWishlist() { renderProducts(products.filter(p => wishlist.includes(p.id)), 'wishlist-list'); }
@@ -1100,6 +1106,10 @@
                 discountMultiplier = 1; 
                 localStorage.removeItem('kcCart'); 
                 document.getElementById('cart-total-nav').innerText = "0.00";
+                
+                ['name', 'email', 'phone', 'address'].forEach(id => { const el = document.getElementById('checkout-' + id); if(el) el.value = ''; });
+                ['num', 'name', 'exp', 'cvv'].forEach(id => { const el = document.getElementById('card-' + id); if(el) el.value = ''; });
+                
                 showView('profile'); 
             })
             .catch((error) => {
