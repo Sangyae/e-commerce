@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keyring Crafters | The Ultimate Keyring Shop</title>
+    <title>Tiny Crafts | Handmade Felt Keyrings</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,34 +15,34 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     
     <style>
-        /* --- KEYRING CRAFTERS COLOR PALETTE --- */
+        /* --- TINY KARTS / CUTE CRAFT COLOR PALETTE --- */
         :root { 
-            --primary-color: #2b2d42; 
-            --primary-hover: #1e1f2e; 
-            --accent-color: #ef233c;  
-            --header-bg: #1e1f2e;     
-            --bg-light: #edf2f4;      
+            --primary-color: #FF7B54; /* Coral/Warm Orange */
+            --primary-hover: #E0603D; 
+            --accent-color: #FFB26B;  /* Soft Yellow/Orange */
+            --header-bg: #FF7B54;     
+            --bg-light: #FFF9F2;      /* Creamy Off-white */
             --card-bg: #ffffff;       
-            --input-bg: #e5e9ec;      
-            --text-dark: #2b2d42;     
-            --text-gray: #8d99ae;     
-            --border-color: #d8e2dc;  
+            --input-bg: #F5EBE1;      
+            --text-dark: #4A3F35;     /* Soft Brown/Dark Grey */
+            --text-gray: #8C7A6B;     
+            --border-color: #EADCD0;  
             --white: #ffffff; 
-            --error-red: #d90429;     
+            --error-red: #E63946;     
         }
 
         [data-theme="dark"] { 
-            --primary-color: #ef233c; 
-            --primary-hover: #d90429; 
-            --accent-color: #ef233c; 
-            --header-bg: #111218; 
-            --bg-light: #1b1c26; 
-            --card-bg: #2b2d42; 
-            --input-bg: #1e1f2e; 
-            --text-dark: #edf2f4; 
-            --text-gray: #8d99ae; 
-            --border-color: #3e4259; 
-            --white: #111218; 
+            --primary-color: #FFB26B; 
+            --primary-hover: #FF7B54; 
+            --accent-color: #FFD59E; 
+            --header-bg: #2C241E; 
+            --bg-light: #1E1814; 
+            --card-bg: #2C241E; 
+            --input-bg: #3D322B; 
+            --text-dark: #FFF9F2; 
+            --text-gray: #BCAAA0; 
+            --border-color: #4A3F35; 
+            --white: #1E1814; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
@@ -51,67 +51,62 @@
         .hidden { display: none !important; }
 
         /* --- APP HEADER --- */
-        #main-header { background: var(--header-bg); color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        #main-header { background: var(--header-bg); color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(255, 123, 84, 0.2); }
         #main-header .logo { font-size: 1.5rem; font-weight: bold; cursor: pointer; color: white; text-decoration: none;}
         #main-header nav { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-        #main-header nav button { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 15px; cursor: pointer; border-radius: 4px; transition: 0.3s; display: flex; align-items: center; gap: 5px; font-family: 'Montserrat';}
-        #main-header nav button:hover { background: rgba(255,255,255,0.2); }
+        #main-header nav button { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 15px; cursor: pointer; border-radius: 20px; transition: 0.3s; display: flex; align-items: center; gap: 5px; font-family: 'Montserrat'; font-weight: bold;}
+        #main-header nav button:hover { background: rgba(255,255,255,0.4); }
         #admin-nav-btn { background: var(--error-red) !important; border-color: transparent !important; }
 
         /* --- LANDING PAGE STYLES --- */
         .landing-header { width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: transparent; }
         .landing-logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; font-family: 'Poppins', sans-serif;}
-        .landing-logo i { background: var(--accent-color); color: white; padding: 8px 10px; border-radius: 8px; font-size: 1.2rem; }
+        .landing-logo i { background: var(--accent-color); color: white; padding: 8px 10px; border-radius: 12px; font-size: 1.2rem; }
         .landing-nav { display: flex; gap: 2.5rem; align-items: center; }
         .landing-nav a { text-decoration: none; color: var(--text-gray); font-weight: 500; font-size: 0.95rem; transition: color 0.3s ease; font-family: 'Poppins', sans-serif;}
         .landing-nav a:hover { color: var(--primary-color); }
         
-        .landing-btn-primary { background: var(--accent-color); color: white; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(239, 35, 60, 0.2); display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.95rem; font-family: 'Poppins', sans-serif;}
-        .landing-btn-primary:hover { background: var(--error-red); transform: translateY(-2px); box-shadow: 0 12px 25px rgba(239, 35, 60, 0.3); color: white;}
-        .landing-btn-secondary { background: var(--card-bg); color: var(--primary-color); padding: 10px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; border: 1px solid var(--border-color); transition: all 0.3s ease; cursor: pointer; font-family: 'Poppins', sans-serif;}
-        .landing-btn-secondary:hover { border-color: var(--primary-color); background: var(--input-bg); }
+        .landing-btn-primary { background: var(--primary-color); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(255, 123, 84, 0.3); display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 1rem; font-family: 'Poppins', sans-serif;}
+        .landing-btn-primary:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 123, 84, 0.4); color: white;}
+        .landing-btn-secondary { background: var(--card-bg); color: var(--primary-color); padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem; border: 2px solid var(--primary-color); transition: all 0.3s ease; cursor: pointer; font-family: 'Poppins', sans-serif;}
+        .landing-btn-secondary:hover { background: var(--input-bg); }
 
         .hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; padding: 4rem 5%; align-items: center; min-height: 80vh;}
         .hero-content h1 { font-size: 4rem; line-height: 1.1; font-weight: 700; color: var(--text-dark); margin-bottom: 1.5rem; }
-        .hero-content h1 span { color: var(--accent-color); }
-        .hero-content p { color: var(--text-gray); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem; max-width: 90%; font-family: 'Poppins', sans-serif;}
+        .hero-content h1 span { color: var(--primary-color); }
+        .hero-content p { color: var(--text-gray); font-size: 1.2rem; line-height: 1.6; margin-bottom: 2.5rem; max-width: 90%; font-family: 'Poppins', sans-serif;}
         .hero-visual { position: relative; width: 100%; }
-        .hero-visual img { width: 100%; height: 500px; border-radius: 40px; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .hero-visual img { width: 100%; height: 550px; border-radius: 30px; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 8px solid white;}
         
-        .floating-badge { position: absolute; bottom: -20px; right: 40px; background: var(--card-bg); padding: 15px 25px; border-radius: 12px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); animation: float 4s ease-in-out infinite; }
-        .badge-icon { background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-        .badge-text h4 { font-size: 1rem; color: var(--text-dark); margin-bottom: 2px; }
-        .badge-text p { font-size: 0.8rem; color: var(--text-gray); margin: 0;}
+        .floating-badge { position: absolute; bottom: -20px; left: -20px; background: var(--card-bg); padding: 15px 25px; border-radius: 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); animation: float 4s ease-in-out infinite; border: 3px solid var(--bg-light);}
+        .badge-icon { background: var(--accent-color); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .badge-text h4 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 2px; }
+        .badge-text p { font-size: 0.85rem; color: var(--text-gray); margin: 0;}
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
 
         /* --- TOASTS & MODALS --- */
         #toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; pointer-events: none; }
-        .toast { min-width: 250px; background: var(--card-bg); color: var(--text-dark); padding: 15px 20px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; align-items: center; transform: translateX(120%); animation: slideIn 0.4s forwards; border-left: 5px solid var(--accent-color); font-weight: bold; font-size: 0.9rem; }
+        .toast { min-width: 250px; background: var(--card-bg); color: var(--text-dark); padding: 15px 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; align-items: center; transform: translateX(120%); animation: slideIn 0.4s forwards; border-left: 6px solid var(--accent-color); font-weight: bold; font-size: 0.9rem; }
         .toast.error { border-left-color: var(--error-red); }
-        .toast.fade-out { animation: fadeOut 0.4s forwards; }
-        @keyframes slideIn { to { transform: translateX(0); } } @keyframes fadeOut { to { opacity: 0; transform: translateX(120%); } }
+        @keyframes slideIn { to { transform: translateX(0); } } 
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); }
-        .modal-content { background: var(--card-bg); padding: 2.5rem 2rem; border-radius: 10px; width: 90%; max-width: 450px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); position: relative; max-height: 90vh; overflow-y: auto;}
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-gray); transition: 0.3s;}
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(74, 63, 53, 0.7); display: flex; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); }
+        .modal-content { background: var(--card-bg); padding: 2.5rem 2rem; border-radius: 20px; width: 90%; max-width: 500px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; max-height: 90vh; overflow-y: auto;}
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: var(--text-gray); transition: 0.3s;}
         .close-modal:hover { color: var(--error-red); transform: scale(1.1); }
         
-        .btn-primary { width: 100%; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.2s; font-family: 'Montserrat';}
-        .btn-primary:hover { background: var(--primary-hover); }
-        .btn-primary:disabled { background: #ccc !important; cursor: not-allowed; }
-        .btn-cancel { padding: 10px 20px; background: var(--input-bg); color: var(--text-dark); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; font-weight: bold; font-family: 'Montserrat'; transition: 0.2s;}
+        .btn-primary { width: 100%; padding: 14px; background: var(--primary-color); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.2s; font-family: 'Montserrat';}
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px);}
+        .btn-primary:disabled { background: #ccc !important; cursor: not-allowed; transform: none;}
+        .btn-cancel { padding: 12px 20px; background: var(--input-bg); color: var(--text-dark); border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-family: 'Montserrat'; transition: 0.2s;}
         .btn-cancel:hover { background: var(--border-color); }
         
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid var(--border-color); border-radius: 4px; font-size: 1rem; outline: none; background: var(--input-bg); color: var(--text-dark); transition: 0.3s;}
-        input:focus, select:focus { border-color: var(--primary-color); }
+        input, select { width: 100%; padding: 14px; margin: 8px 0; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1rem; outline: none; background: var(--input-bg); color: var(--text-dark); transition: 0.3s;}
+        input:focus, select:focus { border-color: var(--primary-color); background: var(--white);}
 
-        /* --- LOGIN UI & SOCIAL BUTTONS --- */
-        #login-view { height: 90vh; display: flex; align-items: center; justify-content: center; position: relative; background: linear-gradient(135deg, #2b2d42, #1e1f2e); perspective: 1000px; overflow: hidden; }
-        .background-3d { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; transform-style: preserve-3d; }
-        .background-3d li { position: absolute; display: block; width: 20px; height: 20px; background: rgba(239, 35, 60, 0.15); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px); animation: floatUp3D 15s linear infinite; bottom: -150px; border-radius: 12px; }
-        .background-3d li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; } .background-3d li:nth-child(2) { left: 10%; width: 30px; height: 30px; animation-duration: 12s; } .background-3d li:nth-child(3) { left: 70%; width: 50px; height: 50px; animation-delay: 4s; }
-
-        .auth-container { background-color: var(--card-bg); border-radius: 10px; transform: translateZ(50px); box-shadow: 0 35px 60px rgba(0,0,0,0.4); position: relative; overflow: hidden; width: 768px; max-width: 90%; min-height: 580px; text-align: center; z-index: 1; }
+        /* --- LOGIN UI & SOCIAL --- */
+        #login-view { height: 90vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .auth-container { background-color: var(--card-bg); border-radius: 20px; transform: translateZ(50px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); position: relative; overflow: hidden; width: 800px; max-width: 90%; min-height: 550px; text-align: center; z-index: 1; }
         .form-container { position: absolute; top: 0; height: 100%; transition: all 0.6s ease-in-out; background: var(--card-bg); display: flex; flex-direction: column; padding: 0 50px; justify-content: center; align-items: center; width: 50%; }
         .form-container form { width: 100%; display: flex; flex-direction: column; align-items: center; }
         .sign-in-container { left: 0; z-index: 2; }
@@ -121,7 +116,7 @@
 
         .overlay-container { position: absolute; top: 0; left: 50%; width: 50%; height: 100%; overflow: hidden; transition: transform 0.6s; z-index: 100; }
         .auth-container.right-panel-active .overlay-container { transform: translateX(-100%); }
-        .overlay { background: linear-gradient(to right, var(--primary-hover), var(--primary-color)); color: #FFF; position: relative; left: -100%; height: 100%; width: 200%; transform: translateX(0); transition: transform 0.6s; }
+        .overlay { background: linear-gradient(to right, var(--accent-color), var(--primary-color)); color: #FFF; position: relative; left: -100%; height: 100%; width: 200%; transform: translateX(0); transition: transform 0.6s; }
         .auth-container.right-panel-active .overlay { transform: translateX(50%); }
         .overlay-panel { position: absolute; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 40px; text-align: center; top: 0; height: 100%; width: 50%; transform: translateX(0); transition: transform 0.6s; }
         .overlay-left { transform: translateX(-20%); }
@@ -129,9 +124,8 @@
         .overlay-right { right: 0; transform: translateX(0); }
         .auth-container.right-panel-active .overlay-right { transform: translateX(20%); }
 
-        /* Social Buttons Styling */
         .social-container { margin: 15px 0; display: flex; gap: 15px; justify-content: center; }
-        .social-container button { border: 1px solid var(--border-color); border-radius: 50%; height: 45px; width: 45px; background: transparent; cursor: pointer; color: var(--text-dark); transition: 0.3s; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .social-container button { border: 2px solid var(--border-color); border-radius: 50%; height: 45px; width: 45px; background: transparent; cursor: pointer; color: var(--text-dark); transition: 0.3s; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
         .social-container button.google:hover { background: #db4437; border-color: #db4437; color: white;}
         .social-container button.linkedin:hover { background: #007bb5; border-color: #007bb5; color: white;}
         .social-container button.instagram:hover { background: #e1306c; border-color: #e1306c; color: white;}
@@ -141,41 +135,41 @@
         /* --- SHOP & CARDS --- */
         .container { max-width: 1200px; margin: 3rem auto; padding: 0 5%; }
         .controls { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; max-width: 1200px; margin: 2rem auto; padding: 0 5%; }
-        .price-slider-container { display: flex; align-items: center; gap: 15px; max-width: 1200px; margin: 0 auto 1rem auto; padding: 0 5%; font-weight: bold; color: var(--text-dark); }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 2rem 5%; max-width: 1200px; margin: 0 auto; }
+        .price-slider-container { display: flex; align-items: center; gap: 15px; max-width: 1200px; margin: 0 auto 1rem auto; padding: 0 5%; font-weight: bold; color: var(--text-dark); background: var(--card-bg); padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);}
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; padding: 2rem 5%; max-width: 1200px; margin: 0 auto; }
         
-        .card { background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border-color); padding: 15px; display: flex; flex-direction: column; position: relative; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; cursor: pointer; transition: 0.2s; background-color: var(--input-bg);}
-        .card img:hover { opacity: 0.85; }
-        .heart-btn { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; color: #ccc; font-size: 1.2rem; z-index: 10; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        .card { background: var(--card-bg); border-radius: 20px; padding: 15px; display: flex; flex-direction: column; position: relative; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 20px rgba(0,0,0,0.04); border: 2px solid transparent;}
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(255, 123, 84, 0.15); border-color: var(--border-color);}
+        .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; cursor: pointer; transition: 0.2s; background-color: var(--input-bg);}
+        .card img:hover { opacity: 0.9; }
+        .heart-btn { position: absolute; top: 25px; right: 25px; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; color: #ccc; font-size: 1.3rem; z-index: 10; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
         .heart-btn.active { color: var(--error-red); }
-        .price { font-size: 1.25rem; font-weight: bold; color: var(--accent-color); margin: 5px 0;}
-        .category { font-size: 0.75rem; text-transform: uppercase; color: var(--text-gray); font-weight: bold; }
+        .price { font-size: 1.4rem; font-weight: bold; color: var(--primary-color); margin: 5px 0;}
+        .category { font-size: 0.75rem; text-transform: uppercase; color: var(--text-gray); font-weight: bold; letter-spacing: 1px;}
 
-        .autocomplete-results { position: absolute; top: 100%; left: 0; width: 100%; background: var(--card-bg); border: 1px solid var(--border-color); border-top: none; z-index: 1000; border-radius: 0 0 8px 8px; max-height: 250px; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
-        .autocomplete-item { padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-dark); border-bottom: 1px solid var(--input-bg); }
-        .autocomplete-item:hover { background: var(--input-bg); }
-        .autocomplete-item img { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; }
+        .autocomplete-results { position: absolute; top: 100%; left: 0; width: 100%; background: var(--card-bg); border: 2px solid var(--border-color); border-top: none; z-index: 1000; border-radius: 0 0 12px 12px; max-height: 250px; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1);}
+        .autocomplete-item { padding: 12px; display: flex; align-items: center; gap: 15px; cursor: pointer; color: var(--text-dark); border-bottom: 1px solid var(--input-bg); transition: 0.2s;}
+        .autocomplete-item:hover { background: var(--input-bg); padding-left: 18px;}
+        .autocomplete-item img { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; }
 
         /* --- CART & CHECKOUT --- */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02);}
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-dark); }
-        th { background: var(--input-bg); font-weight: 600; color: var(--text-gray); text-transform: uppercase; font-size: 0.85rem;}
+        table { width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 2rem; background: var(--card-bg); border-radius: 15px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.04);}
+        th, td { padding: 18px; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-dark); }
+        th { background: var(--input-bg); font-weight: 700; color: var(--text-gray); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;}
         
         .checkout-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; margin-top: 20px; }
-        .checkout-card { background: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--border-color); color: var(--text-dark); box-shadow: 0 4px 6px rgba(0,0,0,0.02);}
-        .checkout-steps { display: flex; justify-content: space-between; margin-bottom: 20px; background: var(--input-bg); border-radius: 8px; padding: 10px; }
-        .step { flex: 1; text-align: center; padding: 10px; color: var(--text-gray); font-weight: bold; border-radius: 4px; transition: 0.3s; }
-        .step.active { background: var(--primary-color); color: white; }
+        .checkout-card { background: var(--card-bg); padding: 2.5rem; border-radius: 20px; color: var(--text-dark); box-shadow: 0 8px 20px rgba(0,0,0,0.04);}
+        .checkout-steps { display: flex; justify-content: space-between; margin-bottom: 20px; background: var(--input-bg); border-radius: 15px; padding: 10px; }
+        .step { flex: 1; text-align: center; padding: 12px; color: var(--text-gray); font-weight: bold; border-radius: 10px; transition: 0.3s; }
+        .step.active { background: var(--primary-color); color: white; box-shadow: 0 4px 10px rgba(255, 123, 84, 0.3);}
 
         /* Credit Card */
-        .credit-card-container { perspective: 1000px; margin: 0 auto 20px; width: 100%; max-width: 350px; height: 200px; }
+        .credit-card-container { perspective: 1000px; margin: 0 auto 20px; width: 100%; max-width: 350px; height: 210px; }
         .credit-card { width: 100%; height: 100%; position: relative; transition: transform 0.8s; transform-style: preserve-3d; }
         .credit-card.is-flipped { transform: rotateY(180deg); }
-        .card-inner { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); color: white; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-front { background: linear-gradient(135deg, #2b2d42, #1e1f2e); padding: 20px; position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; }
-        .card-back { background: linear-gradient(135deg, #1e1f2e, #111218); position: absolute; width: 100%; height: 100%; backface-visibility: hidden; transform: rotateY(180deg); border-radius: 15px; }
+        .card-inner { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; box-shadow: 0 15px 30px rgba(255, 123, 84, 0.2); color: white; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-front { background: linear-gradient(135deg, #FF7B54, #FFB26B); padding: 20px; position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; }
+        .card-back { background: linear-gradient(135deg, #4A3F35, #2C241E); position: absolute; width: 100%; height: 100%; backface-visibility: hidden; transform: rotateY(180deg); border-radius: 15px; }
 
         /* Mobile Adjustments */
         .mobile-toggle { display: none; margin-top: 15px; font-weight: bold;}
@@ -184,7 +178,7 @@
             .hero { grid-template-columns: 1fr; text-align: center; gap: 2rem; padding-top: 2rem;}
             .landing-nav { display: none; }
             .hero-content h1 { font-size: 3rem; }
-            .floating-badge { right: 50%; transform: translateX(50%); bottom: -30px; }
+            .floating-badge { display: none; }
             .controls, .checkout-grid { grid-template-columns: 1fr; }
             table, thead, tbody, th, td, tr { display: block; } thead tr { display: none; }
             td { display: flex; justify-content: space-between; align-items: center; text-align: right; border-bottom: none;}
@@ -192,7 +186,7 @@
             td::before { content: attr(data-label); font-weight: bold; float: left; text-align: left; color: var(--text-gray);}
             .overlay-container { display: none; }
             .mobile-toggle { display: block; }
-            .form-container { width: 100%; }
+            .form-container { width: 100%; padding: 0 20px;}
             .sign-up-container { opacity: 0; pointer-events: none; }
             .auth-container.right-panel-active .sign-in-container { opacity: 0; pointer-events: none; } 
             .auth-container.right-panel-active .sign-up-container { opacity: 1; pointer-events: auto; transform: none; }
@@ -202,7 +196,7 @@
 <body>
 
 <header id="main-header" class="hidden">
-    <a href="#" class="logo" onclick="showView('landing')"><i class="fas fa-key"></i> Keyring Crafters</a>
+    <a href="#" class="logo" onclick="showView('landing')"><i class="fas fa-paw"></i> Tiny Crafts</a>
     <nav>
         <button id="admin-nav-btn" class="hidden" onclick="showView('admin')"><i class="fas fa-crown"></i> Admin</button>
         <button onclick="showView('shop')"><i class="fas fa-store"></i> Shop</button>
@@ -219,7 +213,7 @@
 <div id="landing-view">
     <header class="landing-header">
         <a href="#" class="landing-logo">
-            <i class="fas fa-key"></i> Keyring Crafters
+            <i class="fas fa-paw"></i> Tiny Crafts
         </a>
         <nav class="landing-nav">
             <a href="#" onclick="showView('landing')">Home</a>
@@ -234,17 +228,17 @@
 
     <main class="hero">
         <div class="hero-content">
-            <h1>The Perfect <br><span>Keyring</span> Awaits</h1>
-            <p>From personalized photo charms to premium leather loops and fun novelty pieces, we have the perfect addition to your keys.</p>
+            <h1>Handmade <br><span>Felt Keyrings</span></h1>
+            <p>Discover our adorable, needle-felted animal and food keyrings. Every piece is uniquely crafted to bring a smile to your daily carry!</p>
             <button class="landing-btn-primary" onclick="showView('login')" style="padding: 15px 35px; font-size: 1.1rem;">Explore Keyrings <i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="hero-visual">
-            <img src="banner4.jpg" alt="Collection of keyrings" onerror="this.src='https://images.unsplash.com/photo-1596489397682-3d719ceea1eb?auto=format&fit=crop&w=1000&q=80'">
+            <img src="banner4.jpg" alt="Collection of cute felt keyrings" onerror="this.src='https://images.unsplash.com/photo-1596489397682-3d719ceea1eb?auto=format&fit=crop&w=1000&q=80'">
             <div class="floating-badge">
-                <div class="badge-icon"><i class="fas fa-gem"></i></div>
+                <div class="badge-icon"><i class="fas fa-heart"></i></div>
                 <div class="badge-text">
-                    <h4 class="landing-font">Custom Made</h4>
-                    <p class="landing-font">Quality Assured</p>
+                    <h4 class="landing-font">100% Handmade</h4>
+                    <p class="landing-font">Needle-felted with love</p>
                 </div>
             </div>
         </div>
@@ -252,24 +246,23 @@
 </div>
 
 <div id="about-view" class="hidden container">
-    <h2 style="color: var(--text-dark); margin-bottom: 20px; font-family: 'Poppins', sans-serif;">About Keyring Crafters 🔑</h2>
+    <h2 style="color: var(--text-dark); margin-bottom: 20px; font-family: 'Poppins', sans-serif;">About Tiny Crafts 🧶</h2>
     <div class="checkout-card" style="line-height: 1.8;">
         <h3 style="color: var(--primary-color); margin-bottom: 15px; font-family: 'Poppins', sans-serif;">Our Passion</h3>
         <p style="color: var(--text-gray); margin-bottom: 20px;">
-            At Keyring Crafters, we know that your keys go everywhere you do. Our mission is to provide the ultimate collection of keyrings to show off your personality, keep your memories close, or add utility to your daily life.
+            Welcome to Tiny Crafts! We specialize in creating the cutest, highest-quality needle-felted keyrings. Whether you love woodland animals, pop-culture icons, or sweet treats, we have a tiny companion for your keys or backpack.
         </p>
         <h3 style="color: var(--primary-color); margin-bottom: 15px; font-family: 'Poppins', sans-serif;">Why Choose Us?</h3>
         <ul style="color: var(--text-gray); margin-left: 20px; margin-bottom: 20px;">
-            <li style="margin-bottom: 10px;"><strong>Huge Variety:</strong> We offer everything from elegant engraved metal to fun pop-it keyrings.</li>
-            <li style="margin-bottom: 10px;"><strong>Personalization:</strong> Many of our items can be customized with photos or text.</li>
-            <li style="margin-bottom: 10px;"><strong>Independent Business:</strong> We are a small team dedicated to exceptional customer service.</li>
+            <li style="margin-bottom: 10px;"><strong>Handmade Charm:</strong> Every single item is uniquely crafted, meaning no two pandas or sloths are exactly alike!</li>
+            <li style="margin-bottom: 10px;"><strong>Soft & Durable:</strong> Our felted wool is tightly packed to endure the daily bumping of keys and bags.</li>
+            <li style="margin-bottom: 10px;"><strong>Independent Makers:</strong> By shopping with us, you are supporting independent artists.</li>
         </ul>
         <button class="btn-primary" style="width: auto; padding: 10px 25px;" onclick="showView('login')">Sign In to Start Shopping</button>
     </div>
 </div>
 
 <div id="login-view" class="hidden">
-    <ul class="background-3d"><li></li><li></li><li></li><li></li><li></li><li></li></ul>
     <div class="auth-container" id="auth-container">
         
         <div class="form-container sign-up-container">
@@ -312,12 +305,12 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1 class="landing-font">Welcome Back!</h1><p>Login to find the perfect addition to your keys.</p>
-                    <button style="background: transparent; border: 1px solid #FFF; color: #FFF; border-radius: 20px; padding: 12px 45px; cursor: pointer; margin-top: 15px; font-weight:bold;" id="signInBtn" type="button">Sign In</button>
+                    <h1 class="landing-font">Welcome Back!</h1><p>Login to find the perfect adorable addition to your keys.</p>
+                    <button style="background: transparent; border: 2px solid #FFF; color: #FFF; border-radius: 50px; padding: 12px 45px; cursor: pointer; margin-top: 15px; font-weight:bold;" id="signInBtn" type="button">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1 class="landing-font">Hello, Crafter!</h1><p>Join us to discover custom and novelty keyrings.</p>
-                    <button style="background: transparent; border: 1px solid #FFF; color: #FFF; border-radius: 20px; padding: 12px 45px; cursor: pointer; margin-top: 15px; font-weight:bold;" id="signUpBtn" type="button">Sign Up</button>
+                    <h1 class="landing-font">Hello, Friend!</h1><p>Join us to discover cute, handmade felt keyrings.</p>
+                    <button style="background: transparent; border: 2px solid #FFF; color: #FFF; border-radius: 50px; padding: 12px 45px; cursor: pointer; margin-top: 15px; font-weight:bold;" id="signUpBtn" type="button">Sign Up</button>
                 </div>
             </div>
         </div>
@@ -327,15 +320,15 @@
 <div id="shop-view" class="hidden">
     <div class="controls">
         <select id="cat-filter" onchange="filterProducts()" aria-label="Filter by Category">
-            <option value="all">All Keyrings</option>
-            <option value="Custom & Photo">Custom & Photo</option>
-            <option value="Leather & Premium">Leather & Premium</option>
-            <option value="Novelty & Fun">Novelty & Fun</option>
-            <option value="Utility Keyrings">Utility & Tools</option>
+            <option value="all">All Crafts</option>
+            <option value="Animals">Animals & Wildlife</option>
+            <option value="Food & Plants">Food & Plants</option>
+            <option value="Pop Culture & Fun">Pop Culture & Fun</option>
+            <option value="Symbols & Charms">Symbols & Charms</option>
         </select>
         
         <div style="position: relative; width: 100%;">
-            <input type="text" id="search-input" placeholder="Search for keyrings..." onkeyup="handleLiveSearch(event)" aria-label="Search Products">
+            <input type="text" id="search-input" placeholder="Search for tiny crafts..." onkeyup="handleLiveSearch(event)" aria-label="Search Products">
             <div id="autocomplete-dropdown" class="autocomplete-results"></div>
         </div>
 
@@ -355,27 +348,27 @@
 </div>
 
 <div id="cart-view" class="hidden container">
-    <h2 style="color: var(--text-dark); margin-bottom: 20px;">Your Basket</h2>
+    <h2 style="color: var(--text-dark); margin-bottom: 20px; font-family: 'Poppins', sans-serif;">Your Basket 🧺</h2>
     <div style="overflow-x: auto;">
         <table id="cart-table">
-            <thead><tr><th>Keyring</th><th>Price</th><th>Quantity</th><th>Total</th><th>Action</th></tr></thead>
+            <thead><tr><th>Craft</th><th>Price</th><th>Quantity</th><th>Total</th><th>Action</th></tr></thead>
             <tbody id="cart-items"></tbody>
         </table>
     </div>
-    <div style="text-align: right; padding: 20px; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border-color); color: var(--text-dark);">
+    <div style="text-align: right; padding: 30px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border-color); color: var(--text-dark); box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
         <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: flex-end;">
-            <input type="text" id="promo-input" placeholder="Promo code (Try KEY20)" style="width: 200px; margin: 0;">
-            <button class="btn-primary" style="width: auto; padding: 10px 20px;" onclick="applyPromo()">Apply</button>
+            <input type="text" id="promo-input" placeholder="Promo code (Try CUTE20)" style="width: 250px; margin: 0;">
+            <button class="btn-primary" style="width: auto; padding: 10px 25px;" onclick="applyPromo()">Apply</button>
         </div>
         <p id="promo-msg" style="font-weight: bold; margin-bottom: 10px; font-size: 0.9rem;"></p>
-        <h3>Subtotal: £<span id="cart-subtotal">0.00</span></h3>
-        <h2 style="color: var(--accent-color); margin: 10px 0;">Grand Total: £<span id="cart-grand-total">0.00</span></h2>
-        <button class="btn-primary" style="width:auto; font-size: 1.1rem; padding: 15px 30px;" onclick="goToCheckout()">Proceed to Checkout</button>
+        <h3 style="color: var(--text-gray);">Subtotal: £<span id="cart-subtotal">0.00</span></h3>
+        <h2 style="color: var(--primary-color); margin: 15px 0; font-size: 2rem;">Grand Total: £<span id="cart-grand-total">0.00</span></h2>
+        <button class="btn-primary" style="width:auto; font-size: 1.1rem; padding: 15px 40px; border-radius: 50px;" onclick="goToCheckout()">Proceed to Checkout <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></button>
     </div>
 </div>
 
 <div id="checkout-view" class="hidden container">
-    <h2 style="color: var(--text-dark); margin-bottom: 20px;">Secure Checkout 💳</h2>
+    <h2 style="color: var(--text-dark); margin-bottom: 20px; font-family: 'Poppins', sans-serif;">Secure Checkout 💳</h2>
     <div class="checkout-steps">
         <div class="step active" id="step-1-tab">1. Shipping</div>
         <div class="step" id="step-2-tab">2. Payment</div>
@@ -399,8 +392,8 @@
                                 <div style="font-size: 2rem; text-align: right;"><i class="fab fa-cc-visa"></i></div>
                                 <div style="font-size: 1.4rem; letter-spacing: 2px; margin: 20px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);" id="card-disp-num">#### #### #### ####</div>
                                 <div style="display: flex; justify-content: space-between; font-size: 0.9rem; text-transform: uppercase;">
-                                    <div><small style="color: #ddd;">Cardholder</small><div id="card-disp-name">JOHN DOE</div></div>
-                                    <div><small style="color: #ddd;">Expires</small><div id="card-disp-exp">MM/YY</div></div>
+                                    <div><small style="color: #FFD59E;">Cardholder</small><div id="card-disp-name">JOHN DOE</div></div>
+                                    <div><small style="color: #FFD59E;">Expires</small><div id="card-disp-exp">MM/YY</div></div>
                                 </div>
                             </div>
                             <div class="card-back">
@@ -424,7 +417,7 @@
             <div id="checkout-step-3" class="hidden">
                 <h3 style="margin-bottom: 15px;">Final Review</h3>
                 <p style="color: var(--text-gray);">Please confirm your details below.</p>
-                <div style="background: var(--input-bg); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <div style="background: var(--input-bg); padding: 15px; border-radius: 12px; margin: 15px 0;">
                     <p><strong>Deliver To:</strong> <span id="review-addr-disp"></span></p>
                     <p><strong>Billed To:</strong> Card ending in <span id="review-card-disp">####</span></p>
                 </div>
@@ -435,24 +428,24 @@
             </div>
         </div>
         <div class="checkout-card" style="height: fit-content;">
-            <h3 style="margin-bottom: 15px;">Order Summary</h3>
+            <h3 style="margin-bottom: 15px; font-family: 'Poppins', sans-serif;">Order Summary</h3>
             <div id="order-summary-list" style="font-size: 0.95rem;"></div>
         </div>
     </div>
 </div>
 
 <div id="profile-view" class="hidden container">
-    <h2 style="color: var(--text-dark); margin-bottom: 20px;">My Profile 📦</h2>
+    <h2 style="color: var(--text-dark); margin-bottom: 20px; font-family: 'Poppins', sans-serif;">My Profile 📦</h2>
     <div class="checkout-grid">
         <div class="checkout-card" style="text-align: center; height: fit-content;">
-            <img src="https://ui-avatars.com/api/?name=User&background=2b2d42&color=fff&size=100" style="border-radius: 50%; margin-bottom: 15px;" id="profile-avatar">
+            <img src="https://ui-avatars.com/api/?name=Craft+Lover&background=FF7B54&color=fff&size=100" style="border-radius: 50%; margin-bottom: 15px;" id="profile-avatar">
             <h3 id="profile-name-display-card">Crafter User</h3>
             <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--border-color);">
             <p><strong>Total Spent:</strong> £<span id="profile-total-spent">0.00</span></p>
             <p><strong>Total Orders:</strong> <span id="profile-order-count">0</span></p>
         </div>
         <div class="checkout-card">
-            <h3 style="margin-bottom: 15px;">Order History</h3>
+            <h3 style="margin-bottom: 15px; font-family: 'Poppins', sans-serif;">Order History</h3>
             <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--border-color);">
             <div id="order-history-list">Loading...</div>
         </div>
@@ -460,7 +453,7 @@
 </div>
 
 <div id="admin-view" class="hidden container">
-    <h2 style="color: var(--text-dark); margin-bottom: 20px;">Admin Dashboard 👑</h2>
+    <h2 style="color: var(--text-dark); margin-bottom: 20px; font-family: 'Poppins', sans-serif;">Admin Dashboard 👑</h2>
     <div class="checkout-grid">
         <div class="checkout-card">
             <h3 style="margin-bottom: 15px;">Global Stats (Cloud Data)</h3>
@@ -470,19 +463,19 @@
             <p style="margin-top: 10px;">Total Products: <strong id="admin-products-count">0</strong></p>
         </div>
         <div class="checkout-card">
-            <h3 style="margin-bottom: 15px;">Add New Keyring</h3>
+            <h3 style="margin-bottom: 15px;">Add New Craft</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <input type="text" id="add-name" placeholder="Product Name">
                 <input type="number" id="add-price" placeholder="Price (£)">
                 <select id="add-cat">
-                    <option value="Custom & Photo">Custom & Photo</option>
-                    <option value="Leather & Premium">Leather & Premium</option>
-                    <option value="Novelty & Fun">Novelty & Fun</option>
-                    <option value="Utility Keyrings">Utility Keyrings</option>
+                    <option value="Animals">Animals & Wildlife</option>
+                    <option value="Food & Plants">Food & Plants</option>
+                    <option value="Pop Culture & Fun">Pop Culture & Fun</option>
+                    <option value="Symbols & Charms">Symbols & Charms</option>
                 </select>
                 <input type="number" id="add-stock" placeholder="Stock">
             </div>
-            <input type="text" id="add-img" placeholder="Image URL (Leave blank for default)">
+            <input type="text" id="add-img" placeholder="Image Name (e.g. baby.jpg)">
             <input type="text" id="add-desc" placeholder="Description">
             <button class="btn-primary" style="margin-top: 10px;" onclick="adminAddProduct()">Save Product</button>
         </div>
@@ -497,8 +490,8 @@
 </div>
 
 <div id="wishlist-view" class="hidden container">
-    <h2 style="color: var(--text-dark); margin-bottom: 10px;">Your Wishlist ❤️</h2>
-    <p style="color: var(--text-gray); margin-bottom: 20px;">Save your favorite keyrings here for later.</p>
+    <h2 style="color: var(--text-dark); margin-bottom: 10px; font-family: 'Poppins', sans-serif;">Your Wishlist ❤️</h2>
+    <p style="color: var(--text-gray); margin-bottom: 20px;">Save your favorite cute crafts here for later.</p>
     <div id="wishlist-list" class="product-grid" style="padding: 0; max-width: none;"></div>
 </div>
 
@@ -506,52 +499,59 @@
     <div class="modal-content" style="max-width: 800px; text-align: left;">
         <span class="close-modal" onclick="closeModal('product-modal')">&times;</span>
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-            <img id="modal-img" src="" style="width: 100%; max-width: 300px; border-radius: 8px; object-fit: cover;">
-            <div style="flex: 1; min-width: 200px;">
-                <p id="modal-cat" style="color: var(--text-gray); font-weight: bold; text-transform: uppercase; font-size: 0.8rem;"></p>
-                <h2 id="modal-title" style="color: var(--text-dark); margin: 10px 0;"></h2>
-                <h3 id="modal-price" style="color: var(--accent-color); margin-bottom: 15px; font-size: 1.5rem;"></h3>
-                <p id="modal-desc" style="color: var(--text-dark); margin-bottom: 20px; line-height: 1.5;"></p>
-                <button id="modal-add-btn" class="btn-primary">Add to Basket</button>
+            <img id="modal-img" src="" style="width: 100%; max-width: 350px; border-radius: 15px; object-fit: cover;">
+            <div style="flex: 1; min-width: 250px;">
+                <p id="modal-cat" style="color: var(--text-gray); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;"></p>
+                <h2 id="modal-title" style="color: var(--text-dark); margin: 10px 0; font-family: 'Poppins', sans-serif; font-size: 2rem;"></h2>
+                <h3 id="modal-price" style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.8rem;"></h3>
+                <p id="modal-desc" style="color: var(--text-gray); margin-bottom: 25px; line-height: 1.6; font-size: 1.1rem;"></p>
+                <button id="modal-add-btn" class="btn-primary" style="padding: 15px; font-size: 1.1rem; border-radius: 50px;">Add to Basket <i class="fas fa-cart-plus" style="margin-left:5px;"></i></button>
             </div>
         </div>
         
-        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
-        <h3 style="color: var(--text-dark); margin-bottom: 15px;">Customer Reviews ⭐</h3>
+        <hr style="margin: 30px 0 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+        <h3 style="color: var(--text-dark); margin-bottom: 15px; font-family: 'Poppins', sans-serif;">Customer Reviews ⭐</h3>
         <div id="reviews-list" style="max-height: 150px; overflow-y: auto; margin-bottom: 15px;"></div>
         <div style="display: flex; gap: 10px;">
             <select id="review-rating" style="width: auto; margin: 0;">
                 <option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option>
             </select>
-            <input type="text" id="review-text" placeholder="Write a review..." style="flex: 1; margin: 0;">
-            <button class="btn-primary" style="width: auto; padding: 10px 20px;" onclick="submitReview()">Post</button>
+            <input type="text" id="review-text" placeholder="Write a sweet review..." style="flex: 1; margin: 0;">
+            <button class="btn-primary" style="width: auto; padding: 10px 25px;" onclick="submitReview()">Post</button>
         </div>
 
-        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
-        <h3 style="color: var(--text-dark); margin-bottom: 15px; font-size: 1rem;">You might also like...</h3>
-        <div id="related-products" style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;"></div>
+        <hr style="margin: 30px 0 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+        <h3 style="color: var(--text-dark); margin-bottom: 15px; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">You might also love...</h3>
+        <div id="related-products" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;"></div>
     </div>
 </div>
 
 <div id="confirmation-modal" class="modal-overlay hidden">
     <div class="modal-content" style="text-align: center;">
-        <h3 style="color: var(--text-dark);">Confirm Your Order</h3>
-        <p style="color: var(--text-dark);">Are you sure you are ready to place this order?</p>
+        <h3 style="color: var(--text-dark); font-family: 'Poppins', sans-serif; font-size: 1.8rem; margin-bottom: 10px;">Confirm Your Order</h3>
+        <p style="color: var(--text-gray);">Are you sure you are ready to adopt these cute crafts?</p>
         <div style="display: flex; justify-content: center; gap: 15px; margin-top: 25px;">
             <button class="btn-cancel" onclick="closeModal('confirmation-modal')">Cancel</button>
-            <button class="btn-primary" style="width: auto; padding: 10px 20px;" onclick="confirmOrder()">Yes, Place Order</button>
+            <button class="btn-primary" style="width: auto; padding: 12px 30px; border-radius: 50px;" onclick="confirmOrder()">Yes, Place Order</button>
         </div>
     </div>
 </div>
 
 <footer style="text-align: center; padding: 3rem; color: var(--text-gray); font-size: 0.9rem;">
-    &copy; 2026 Keyring Crafters | The Ultimate Keyring Shop
+    &copy; 2026 Tiny Crafts | Handmade Felt Keyrings
 </footer>
 
 <script>
     // =========================================================
-    // 1. FIREBASE CONFIGURATION
+    // 1. FIREBASE CONFIGURATION & LOCAL CACHE RESET
     // =========================================================
+    // Bumping to 5.0 to ensure the new "Tiny Karts" theme/images load!
+    const APP_VERSION = "5.0";
+    if(localStorage.getItem('kcVersion') !== APP_VERSION) {
+        localStorage.removeItem('kcProducts');
+        localStorage.setItem('kcVersion', APP_VERSION);
+    }
+
     const firebaseConfig = {
         apiKey: "AIzaSyB5ed0emBRCXIBGgx5itUvpt6CsqpGD9P8",
         authDomain: "keyring-crafters.firebaseapp.com",
@@ -568,36 +568,37 @@
     const db = firebase.firestore();
 
     // =========================================================
-    // 2. STATE MANAGEMENT & LOCAL DATA
+    // 2. STATE MANAGEMENT & LOCAL DATA (TINY CRAFTS CATALOGUE)
     // =========================================================
     let cart = JSON.parse(localStorage.getItem('kcCart')) || [];
     let wishlist = JSON.parse(localStorage.getItem('kcWishlist')) || [];
+    let orderHistory = JSON.parse(localStorage.getItem('kcOrders')) || [];
     let discountMultiplier = 1;
     let currentUser = null; 
     let activeProductId = null;
 
-    // The 20 Curated Keyrings Catalogue
+    // The 20 Curated Tiny Crafts Catalogue mapped exactly to your uploaded images!
     const defaultProducts = [
-        { id: 1, name: "Custom Photo Acrylic Keyring", cat: "Custom & Photo", price: 8.50, stock: 20, desc: "A clear, durable acrylic keyring encasing your favorite uploaded photo.", img: "baby.jpg", reviews: [{ user: "Sarah T.", rating: 5, text: "The photo quality is amazing!" }] },
-        { id: 2, name: "Engraved Calendar Keyring", cat: "Custom & Photo", price: 12.00, stock: 15, desc: "A stainless steel keyring engraved with a specific calendar month and a heart over your special date.", img: "banner4.jpg", reviews: [] },
-        { id: 3, name: "Spotify Song Code Keyring", cat: "Custom & Photo", price: 10.00, stock: 30, desc: "Scan this acrylic keyring with your Spotify app to instantly play your favorite song.", img: "banner5.jpg", reviews: [] },
-        { id: 4, name: "Personalized Name Keyring", cat: "Custom & Photo", price: 6.50, stock: 40, desc: "Custom 3D-printed name keyring available in 15 different bright colors.", img: "banner6.jpg", reviews: [] },
-        { id: 5, name: "Pet Portrait Engraved Keyring", cat: "Custom & Photo", price: 14.00, stock: 25, desc: "Upload a photo of your pet, and we'll laser engrave their portrait onto a wooden disc.", img: "hedgehog.jpg", reviews: [] },
-        { id: 6, name: "Classic Monogram Leather", cat: "Leather & Premium", price: 15.00, stock: 20, desc: "A simple, elegant full-grain leather loop personalized with stamped initials.", img: "keyring.jpg", reviews: [{ user: "Mike R.", rating: 5, text: "Very elegant." }] },
-        { id: 7, name: "Braided Leather Loop Keyring", cat: "Leather & Premium", price: 18.50, stock: 15, desc: "Hand-braided premium leather offering a textured, secure grip.", img: "keyring2.jpg", reviews: [] },
-        { id: 8, name: "Premium Brass Belt Keyring", cat: "Leather & Premium", price: 22.00, stock: 40, desc: "A heavy, solid brass hook designed to hang securely from your belt loop.", img: "baby.jpg", reviews: [] },
-        { id: 9, name: "Suede Tassel Keyring", cat: "Leather & Premium", price: 9.00, stock: 50, desc: "Add a touch of bohemian style to your keys. Made from ultra-soft suede.", img: "banner4.jpg", reviews: [] },
-        { id: 10, name: "Heavy-Duty Carabiner Keyring", cat: "Leather & Premium", price: 16.00, stock: 12, desc: "A matte black, tactical-style carabiner keyring built for the outdoors.", img: "banner5.jpg", reviews: [] },
-        { id: 11, name: "Miniature Sneaker Keyring", cat: "Novelty & Fun", price: 7.50, stock: 35, desc: "A highly detailed, 3D silicone miniature of classic high-top sneakers.", img: "banner6.jpg", reviews: [{ user: "SneakerHead", rating: 5, text: "Looks exactly like the real thing." }] },
-        { id: 12, name: "Bubble Tea Charm Keyring", cat: "Novelty & Fun", price: 5.00, stock: 45, desc: "A cute acrylic cup filled with liquid and moving 'boba' pearls.", img: "hedgehog.jpg", reviews: [] },
-        { id: 13, name: "Retro Arcade Game Keyring", cat: "Novelty & Fun", price: 9.00, stock: 30, desc: "A tiny, fully functional retro arcade machine featuring classic games.", img: "keyring.jpg", reviews: [] },
-        { id: 14, name: "Glowing Resin Flower Keyring", cat: "Novelty & Fun", price: 8.00, stock: 25, desc: "Real dried flowers encased in a clear, glow-in-the-dark resin sphere.", img: "keyring2.jpg", reviews: [] },
-        { id: 15, name: "Pop-it Fidget Keyring", cat: "Novelty & Fun", price: 4.50, stock: 60, desc: "A colorful, silicone bubble-popping fidget toy attached to a chain.", img: "baby.jpg", reviews: [] },
-        { id: 16, name: "Bottle Opener Keyring", cat: "Utility Keyrings", price: 5.50, stock: 40, desc: "A sleek, minimalist stainless steel keyring that doubles as a bottle opener.", img: "banner4.jpg", reviews: [] },
-        { id: 17, name: "Mini Tape Measure Keyring", cat: "Utility Keyrings", price: 6.00, stock: 30, desc: "A retractable 1-meter tape measure in a compact plastic shell.", img: "banner5.jpg", reviews: [] },
-        { id: 18, name: "Emergency Whistle Keyring", cat: "Utility Keyrings", price: 7.00, stock: 35, desc: "A loud, aluminum emergency whistle for safety and hiking.", img: "banner6.jpg", reviews: [] },
-        { id: 19, name: "Flashlight Torch Keyring", cat: "Utility Keyrings", price: 8.50, stock: 25, desc: "An ultra-bright LED micro flashlight that's USB rechargeable.", img: "hedgehog.jpg", reviews: [] },
-        { id: 20, name: "Charging Cable Keyring", cat: "Utility Keyrings", price: 11.00, stock: 20, desc: "A stylish braided leather loop that unfolds into a USB-C charging cable.", img: "keyring.jpg", reviews: [] }
+        { id: 1, name: "Baby Penguin Felt Keyring", cat: "Animals", price: 12.00, stock: 20, desc: "An adorable hand-felted baby penguin to keep you company.", img: "baby.jpg", reviews: [] },
+        { id: 2, name: "Happy Hedgehog Keyring", cat: "Animals", price: 14.00, stock: 15, desc: "A spiky but soft felted hedgehog friend.", img: "hedgehog.jpg", reviews: [] },
+        { id: 3, name: "Panda with Bamboo", cat: "Animals", price: 15.00, stock: 10, desc: "Cute needle-felted panda holding a fresh bamboo shoot.", img: "panda.jpg", reviews: [] },
+        { id: 4, name: "Sweet Cupcake Keyring", cat: "Food & Plants", price: 10.00, stock: 25, desc: "Pink frosted cupcake with a cherry on top. Zero calories!", img: "keyring4.jpg", reviews: [] },
+        { id: 5, name: "Classic Teddy Bear", cat: "Animals", price: 12.50, stock: 30, desc: "A timeless, tiny brown teddy bear keychain.", img: "keyring2.jpg", reviews: [] },
+        { id: 6, name: "Electric Mouse Keyring", cat: "Pop Culture & Fun", price: 16.00, stock: 20, desc: "Catch this familiar yellow electric friend for your keys.", img: "keyring3.jpg", reviews: [] },
+        { id: 7, name: "Hanging Sloth", cat: "Animals", price: 14.50, stock: 18, desc: "Take it easy with this smiling sloth hanging from your bag.", img: "sloth.jpg", reviews: [] },
+        { id: 8, name: "Evil Eye Charm", cat: "Symbols & Charms", price: 9.00, stock: 40, desc: "Protect your energy with this traditional blue evil eye.", img: "keyring.jpg", reviews: [] },
+        { id: 9, name: "Woodland Fox Combo", cat: "Animals", price: 15.00, stock: 15, desc: "A clever little fox ready for daily adventures.", img: "banner6.jpg", reviews: [] },
+        { id: 10, name: "Happy Avocado", cat: "Food & Plants", price: 11.00, stock: 22, desc: "A smiling avocado half. The perfect toast companion.", img: "banner5.jpg", reviews: [] },
+        { id: 11, name: "Retro Hot Air Balloon", cat: "Symbols & Charms", price: 13.00, stock: 12, desc: "Float away with this colorful striped balloon.", img: "banner5.jpg", reviews: [] },
+        { id: 12, name: "Fluffy Farm Sheep", cat: "Animals", price: 12.00, stock: 19, desc: "A super soft, textured sheep straight from the farm.", img: "banner5.jpg", reviews: [] },
+        { id: 13, name: "Potted Cactus Emoji", cat: "Food & Plants", price: 10.50, stock: 24, desc: "A prickle-free smiling cactus in a tiny pot.", img: "banner6.jpg", reviews: [] },
+        { id: 14, name: "Ocean Blue Whale", cat: "Animals", price: 13.50, stock: 16, desc: "A deep blue whale making a splash on your keyring.", img: "banner6.jpg", reviews: [] },
+        { id: 15, name: "Sleepy Baby Sloth", cat: "Animals", price: 14.50, stock: 10, desc: "Another variation of our favorite slow-moving buddy.", img: "sloth.jpg", reviews: [] },
+        { id: 16, name: "Red Cherry Cupcake", cat: "Food & Plants", price: 10.00, stock: 14, desc: "Deliciously cute felted bakery treat.", img: "keyring4.jpg", reviews: [] },
+        { id: 17, name: "Bamboo Muncher Panda", cat: "Animals", price: 15.00, stock: 8, desc: "Detailed panda bear snacking on his favorite green plant.", img: "panda.jpg", reviews: [] },
+        { id: 18, name: "Protective Eye Amulet", cat: "Symbols & Charms", price: 9.00, stock: 30, desc: "A vibrant blue talisman for good luck.", img: "keyring.jpg", reviews: [] },
+        { id: 19, name: "Fuzzy Brown Bear", cat: "Animals", price: 12.50, stock: 11, desc: "Your standard, lovable fuzzy companion.", img: "keyring2.jpg", reviews: [] },
+        { id: 20, name: "Spark Mouse", cat: "Pop Culture & Fun", price: 16.00, stock: 9, desc: "A nostalgic favorite for retro game fans.", img: "keyring3.jpg", reviews: [] }
     ];
 
     let products = JSON.parse(localStorage.getItem('kcProducts')) || defaultProducts;
@@ -676,7 +677,7 @@
     }
 
     function mockSocialLogin(platform) {
-        currentUser = platform.toLowerCase() + "_user@keyringcrafters.com";
+        currentUser = platform.toLowerCase() + "_user@tinycrafts.com";
         document.getElementById('profile-name-nav').innerText = platform + " User";
         document.getElementById('profile-name-display-card').innerText = platform + " User";
         showToast(`Authenticated via ${platform}! (Mocked for Prototype)`, "success");
@@ -700,7 +701,7 @@
     }
 
     // =========================================================
-    // 4. UI HELPERS & NAVIGATION
+    // 4. UI HELPERS & NAVIGATION & HASH ROUTING
     // =========================================================
     function showToast(message, type = 'success') {
         const container = document.getElementById('toast-container');
@@ -730,7 +731,7 @@
         document.getElementById('theme-btn').innerHTML = '<i class="fas fa-sun"></i>';
     }
 
-    function showView(viewId) {
+    function showView(viewId, addToHistory = true) {
         ['landing-view', 'login-view', 'shop-view', 'cart-view', 'checkout-view', 'profile-view', 'wishlist-view', 'admin-view', 'about-view'].forEach(v => { 
             const el = document.getElementById(v);
             if(el) el.classList.add('hidden'); 
@@ -758,6 +759,10 @@
         document.getElementById('wish-count').innerText = wishlist.length;
         
         window.scrollTo(0,0);
+
+        if (addToHistory) {
+            window.history.pushState(null, null, `#${viewId}`);
+        }
     }
 
     // =========================================================
@@ -776,7 +781,7 @@
                 <div class="autocomplete-item" onclick="openProductModal(${p.id}); document.getElementById('search-input').value=''; document.getElementById('autocomplete-dropdown').innerHTML='';">
                     <img src="${p.img}" onerror="this.src='https://placehold.co/40'"> 
                     <span>${p.name}</span> 
-                    <span style="margin-left:auto; color:var(--primary-color);">£${p.price.toFixed(2)}</span>
+                    <span style="margin-left:auto; color:var(--primary-color); font-weight:bold;">£${p.price.toFixed(2)}</span>
                 </div>`;
         });
         filterProducts();
@@ -795,7 +800,7 @@
         
         container.innerHTML = '';
         if(list.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:var(--text-gray); grid-column: 1/-1;">No keyrings found.</p>';
+            container.innerHTML = '<p style="text-align:center; color:var(--text-gray); grid-column: 1/-1;">No tiny crafts found.</p>';
             return;
         }
         
@@ -806,9 +811,9 @@
                     <button class="heart-btn ${isWished ? 'active' : ''}" onclick="toggleWishlist(${p.id}, event)">
                         <i class="${isWished ? 'fas' : 'far'} fa-heart"></i>
                     </button>
-                    <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/400x300?text=Product'" onclick="openProductModal(${p.id})">
+                    <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/400x300?text=Craft'" onclick="openProductModal(${p.id})">
                     <div class="category">${p.cat}</div>
-                    <div class="title" style="font-weight:bold; font-size:1.1rem; cursor:pointer;" onclick="openProductModal(${p.id})">${p.name}</div>
+                    <div class="title" style="font-weight:bold; font-size:1.1rem; cursor:pointer; font-family:'Poppins', sans-serif;" onclick="openProductModal(${p.id})">${p.name}</div>
                     <div class="price">£${p.price.toFixed(2)}</div>
                     <button class="btn-primary" onclick="addToCart(${p.id}, event)" ${p.stock === 0 ? 'disabled' : ''}>Add to Basket</button>
                 </div>`;
@@ -864,16 +869,16 @@
     function renderRelatedProducts(currentProduct) {
         const container = document.getElementById('related-products');
         container.innerHTML = '';
-        const related = products.filter(p => p.cat === currentProduct.cat && p.id !== currentProduct.id).slice(0, 3);
+        const related = products.filter(p => p.cat === currentProduct.cat && p.id !== currentProduct.id).slice(0, 4);
         
         if(related.length === 0) return;
         
         related.forEach(p => {
             container.innerHTML += `
-                <div style="min-width: 150px; background: var(--input-bg); border-radius: 8px; padding: 10px; cursor: pointer; transition: 0.2s;" onclick="openProductModal(${p.id})">
-                    <img src="${p.img}" onerror="this.src='https://placehold.co/150'" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; margin-bottom: 5px;">
-                    <div style="font-size: 0.85rem; font-weight: bold; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p.name}</div>
-                    <div style="font-size: 0.85rem; color: var(--primary-color);">£${p.price.toFixed(2)}</div>
+                <div style="min-width: 130px; background: var(--input-bg); border-radius: 12px; padding: 10px; cursor: pointer; transition: 0.2s; border: 1px solid transparent;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'" onclick="openProductModal(${p.id})">
+                    <img src="${p.img}" onerror="this.src='https://placehold.co/150'" style="width: 100%; height: 90px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;">
+                    <div style="font-size: 0.8rem; font-weight: bold; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p.name}</div>
+                    <div style="font-size: 0.85rem; color: var(--primary-color); font-weight:bold;">£${p.price.toFixed(2)}</div>
                 </div>`;
         });
     }
@@ -882,12 +887,12 @@
         const list = document.getElementById('reviews-list');
         list.innerHTML = '';
         if (!product.reviews || product.reviews.length === 0) {
-            list.innerHTML = '<p style="color:var(--text-gray); font-size: 0.9rem;">No reviews yet. Be the first!</p>';
+            list.innerHTML = '<p style="color:var(--text-gray); font-size: 0.9rem;">No reviews yet. Be the first to review!</p>';
         } else {
             product.reviews.forEach(r => {
                 const stars = '⭐'.repeat(r.rating);
-                list.innerHTML += `<div style="background:var(--input-bg); padding:15px; border-radius:8px; margin-bottom:10px; color:var(--text-dark);">
-                    <strong style="display:block; margin-bottom:5px;">${r.user} <span style="color:#f1c40f; font-size:0.9rem;">${stars}</span></strong>
+                list.innerHTML += `<div style="background:var(--input-bg); padding:15px; border-radius:12px; margin-bottom:10px; color:var(--text-dark);">
+                    <strong style="display:block; margin-bottom:5px; font-family:'Poppins', sans-serif;">${r.user} <span style="color:#FFB26B; font-size:0.9rem;">${stars}</span></strong>
                     <span style="font-size: 0.9rem;">${r.text}</span>
                 </div>`;
             });
@@ -957,10 +962,10 @@
         const msgEl = document.getElementById('promo-msg');
         const code = codeEl.value.trim().toUpperCase();
         
-        if (code === 'KEY20') { 
+        if (code === 'CUTE20') { 
             discountMultiplier = 0.8; 
             msgEl.innerText = "20% Off Applied!"; 
-            msgEl.style.color = "var(--accent-color)"; 
+            msgEl.style.color = "var(--primary-color)"; 
             showToast("Promo code applied!", "success"); 
         } else { 
             discountMultiplier = 1; 
@@ -973,14 +978,14 @@
 
     function renderCart() {
         const tbody = document.getElementById('cart-items');
-        tbody.innerHTML = cart.length === 0 ? '<tr><td colspan="5" style="text-align:center; padding: 20px;">Your basket is empty</td></tr>' : '';
+        tbody.innerHTML = cart.length === 0 ? '<tr><td colspan="5" style="text-align:center; padding: 30px; font-weight:bold; color:var(--text-gray);">Your basket is empty. Add some crafts!</td></tr>' : '';
         cart.forEach(item => {
             tbody.innerHTML += `<tr>
-                <td data-label="Keyring"><img src="${item.img}" style="width:40px; height:40px; border-radius:4px; vertical-align:middle; margin-right:10px; object-fit:cover;"> ${item.name}</td>
+                <td data-label="Craft" style="font-weight:bold;"><img src="${item.img}" style="width:45px; height:45px; border-radius:8px; vertical-align:middle; margin-right:10px; object-fit:cover;"> ${item.name}</td>
                 <td data-label="Price">£${item.price.toFixed(2)}</td>
-                <td data-label="Quantity"><input type="number" value="${item.qty}" min="1" max="${item.stock}" style="width:60px; padding:5px; margin:0;" onchange="updateQty(${item.id}, this.value)"></td>
-                <td data-label="Total">£${(item.price * item.qty).toFixed(2)}</td>
-                <td data-label="Action"><button onclick="removeItem(${item.id})" style="color:var(--error-red); background:none; border:none; cursor:pointer; font-size:1.1rem;"><i class="fas fa-trash"></i></button></td>
+                <td data-label="Quantity"><input type="number" value="${item.qty}" min="1" max="${item.stock}" style="width:65px; padding:8px; margin:0; border-radius:8px;" onchange="updateQty(${item.id}, this.value)"></td>
+                <td data-label="Total" style="color:var(--primary-color); font-weight:bold;">£${(item.price * item.qty).toFixed(2)}</td>
+                <td data-label="Action"><button onclick="removeItem(${item.id})" style="color:var(--error-red); background:none; border:none; cursor:pointer; font-size:1.2rem; transition:0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><i class="fas fa-trash-alt"></i></button></td>
             </tr>`;
         });
         
@@ -1063,9 +1068,9 @@
 
     function renderCheckout() {
         const summary = document.getElementById('order-summary-list');
-        summary.innerHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom: 5px; color:var(--text-dark);"><span>${i.qty}x ${i.name}</span><span>£${(i.price * i.qty).toFixed(2)}</span></div>`).join('');
+        summary.innerHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom: 8px; color:var(--text-dark); padding-bottom:8px; border-bottom:1px solid var(--border-color);"><span><strong>${i.qty}x</strong> ${i.name}</span><span style="font-weight:bold; color:var(--primary-color);">£${(i.price * i.qty).toFixed(2)}</span></div>`).join('');
         if (discountMultiplier < 1) {
-            summary.innerHTML += `<div style="display:flex; justify-content:space-between; color:var(--accent-color); margin-top:10px; font-weight:bold;"><span>Promo</span><span>-20%</span></div>`;
+            summary.innerHTML += `<div style="display:flex; justify-content:space-between; color:var(--error-red); margin-top:10px; font-weight:bold;"><span>Promo Code</span><span>-20%</span></div>`;
         }
         document.getElementById('checkout-total-btn').innerText = (getCartTotal() * discountMultiplier).toFixed(2);
     }
@@ -1083,7 +1088,7 @@
         if (!currentUser) return showToast("You must be logged in to order.", "error");
         
         closeModal('confirmation-modal');
-        if (typeof confetti === "function") confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } }); 
+        if (typeof confetti === "function") confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, colors: ['#FF7B54', '#FFB26B', '#ffffff'] }); 
         
         const orderData = {
             userEmail: currentUser,
@@ -1100,6 +1105,10 @@
                 discountMultiplier = 1; 
                 localStorage.removeItem('kcCart'); 
                 document.getElementById('cart-total-nav').innerText = "0.00";
+                
+                ['name', 'email', 'phone', 'address'].forEach(id => { const el = document.getElementById('checkout-' + id); if(el) el.value = ''; });
+                ['num', 'name', 'exp', 'cvv'].forEach(id => { const el = document.getElementById('card-' + id); if(el) el.value = ''; });
+                
                 showView('profile'); 
             })
             .catch((error) => {
@@ -1119,12 +1128,12 @@
         .then((querySnapshot) => {
             list.innerHTML = '';
             if(querySnapshot.empty) {
-                list.innerHTML = '<p style="color:var(--text-gray);">No orders found.</p>';
+                list.innerHTML = '<p style="color:var(--text-gray);">No orders found. Time to adopt a tiny craft!</p>';
             } else {
                 querySnapshot.forEach((doc) => {
                     const o = doc.data();
                     spent += parseFloat(o.total);
-                    list.innerHTML += `<div style="background:var(--input-bg); padding:15px; border-radius:8px; margin-bottom:10px; color:var(--text-dark);"><div style="display:flex; justify-content:space-between; margin-bottom:5px;"><strong>Order ID: ${doc.id.substring(0,8)}</strong><span style="color:var(--accent-color); font-weight:bold;">£${o.total.toFixed(2)}</span></div><p style="font-size:0.8rem; color:var(--text-gray); margin-bottom:5px;">${new Date(o.date).toLocaleDateString()} - Status: ${o.status}</p><p style="font-size:0.85rem;">${o.items.map(i=>`${i.qty}x ${i.name}`).join(', ')}</p></div>`;
+                    list.innerHTML += `<div style="background:var(--input-bg); padding:20px; border-radius:15px; margin-bottom:15px; color:var(--text-dark);"><div style="display:flex; justify-content:space-between; margin-bottom:5px;"><strong style="font-family:'Poppins', sans-serif;">Order ID: ${doc.id.substring(0,8)}</strong><span style="color:var(--primary-color); font-weight:bold; font-size:1.2rem;">£${o.total.toFixed(2)}</span></div><p style="font-size:0.85rem; color:var(--text-gray); margin-bottom:10px; font-weight:bold;">${new Date(o.date).toLocaleDateString()} - Status: ${o.status}</p><div style="font-size:0.9rem; line-height:1.6;">${o.items.map(i=>`<b>${i.qty}x</b> ${i.name}`).join('<br> ')}</div></div>`;
                 });
             }
             document.getElementById('profile-total-spent').innerText = spent.toFixed(2);
@@ -1144,11 +1153,11 @@
         
         document.getElementById('admin-products-count').innerText = products.length;
         document.getElementById('admin-inventory-list').innerHTML = products.map(p => `<tr>
-            <td><img src="${p.img}" onerror="this.src='https://placehold.co/40'" style="width:40px; height:40px; object-fit:cover; border-radius:4px;"></td>
-            <td style="color:var(--text-dark)">${p.name}</td>
-            <td style="color:var(--text-dark)">£${p.price.toFixed(2)}</td>
-            <td><input type="number" value="${p.stock}" onchange="adminUpdateStock(${p.id}, this.value)" style="width:70px; padding:5px; margin:0;"></td>
-            <td><button onclick="adminDelete(${p.id})" style="color:var(--error-red); background:none; border:none; cursor:pointer; font-size:1.1rem;"><i class="fas fa-trash"></i></button></td>
+            <td><img src="${p.img}" onerror="this.src='https://placehold.co/40'" style="width:45px; height:45px; object-fit:cover; border-radius:8px;"></td>
+            <td style="color:var(--text-dark); font-weight:bold;">${p.name}</td>
+            <td style="color:var(--primary-color); font-weight:bold;">£${p.price.toFixed(2)}</td>
+            <td><input type="number" value="${p.stock}" onchange="adminUpdateStock(${p.id}, this.value)" style="width:70px; padding:8px; margin:0; border-radius:8px;"></td>
+            <td><button onclick="adminDelete(${p.id})" style="color:var(--error-red); background:none; border:none; cursor:pointer; font-size:1.3rem;"><i class="fas fa-trash-alt"></i></button></td>
         </tr>`).join('');
     }
 
@@ -1168,8 +1177,8 @@
         const cat = document.getElementById('add-cat').value;
         const price = document.getElementById('add-price').value;
         const stock = document.getElementById('add-stock').value || 10;
-        const img = document.getElementById('add-img').value || 'https://placehold.co/400x300?text=New+Keyring';
-        const desc = document.getElementById('add-desc').value || "A new custom keyring.";
+        const img = document.getElementById('add-img').value || 'baby.jpg';
+        const desc = document.getElementById('add-desc').value || "A new cute craft addition.";
         
         if(!name || !price) return showToast("Name and Price are required", "error");
         
@@ -1180,8 +1189,20 @@
         renderAdmin(); showToast("Product added!", "success");
     }
 
+    // =========================================================
+    // 10. BACK BUTTON FIX (HASH ROUTING)
+    // =========================================================
+    window.addEventListener('popstate', () => {
+        let hash = window.location.hash.substring(1);
+        if (!hash) hash = 'landing';
+        showView(hash, false); 
+    });
+
     // BOOT UP THE APP ON LOAD
-    document.addEventListener("DOMContentLoaded", () => { showView('landing'); });
+    document.addEventListener("DOMContentLoaded", () => { 
+        let initialView = window.location.hash.substring(1) || 'landing';
+        showView(initialView, false); 
+    });
 </script>
 
 </body>
